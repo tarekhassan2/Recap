@@ -7,6 +7,16 @@ export const Route = createFileRoute('/year/$year')({
   component: YearPage,
 })
 
+// Helper function to get image URL with base path
+const getImageUrl = (imagePath: string): string => {
+  const baseUrl = import.meta.env.BASE_URL || '/'
+  // Remove leading slash from imagePath if it exists, then combine with baseUrl
+  const cleanPath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath
+  // Ensure baseUrl ends with / and cleanPath doesn't start with /
+  const base = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`
+  return `${base}${cleanPath}`
+}
+
 function YearPage() {
   const { year } = Route.useParams()
   const yearNum = parseInt(year, 10)
@@ -532,7 +542,7 @@ function QuarterCarousel({ quarter }: { quarter: { quarter: string; focus: strin
                             onClick={() => setSelectedImageIndex(imgIdx)}
                           >
                             <img
-                              src={image}
+                              src={getImageUrl(image)}
                               alt={`${project.title} - Image ${imgIdx + 1}`}
                               className="project-image"
                               loading="lazy"
@@ -670,7 +680,7 @@ function ImageLightbox({
         </div>
         <div className="lightbox-image-container">
           <img
-            src={images[lightboxIndex]}
+            src={getImageUrl(images[lightboxIndex])}
             alt={`${projectTitle} - Image ${lightboxIndex + 1}`}
             className="lightbox-image"
           />
@@ -683,7 +693,7 @@ function ImageLightbox({
                 className={`lightbox-thumbnail ${idx === lightboxIndex ? 'active' : ''}`}
                 onClick={() => handleThumbnailClick(idx)}
               >
-                <img src={image} alt={`Thumbnail ${idx + 1}`} />
+                <img src={getImageUrl(image)} alt={`Thumbnail ${idx + 1}`} />
               </button>
             ))}
           </div>
