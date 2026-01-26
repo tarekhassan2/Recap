@@ -35,6 +35,7 @@ jobs:
         run: yarn build:gh-pages
         env:
           GITHUB_PAGES: 'true'
+          NODE_ENV: 'production'
 
       - name: Create .nojekyll
         run: touch dist/.nojekyll
