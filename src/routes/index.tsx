@@ -17,10 +17,11 @@ function HomePage() {
     <div className="home-container">
       <div className="home-content">
         <header className="home-header">
-          <h1 className="home-title">Noon Work Recap</h1>
+          <h1 className="home-title">Tarek Hassan</h1>
           <p className="home-subtitle">
-            A reference of all my work and achievements at Noon
+            Owning end-to-end operational workflows and critical front-end architecture for Outbound, Platform, and JUMP squads.
           </p>
+          <p className="home-context">Noon Work Recap — A reference of my work and achievements</p>
         </header>
 
         <section className="years-section">

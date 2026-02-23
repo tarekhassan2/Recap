@@ -5,6 +5,11 @@ export interface Achievement {
   impact?: string
 }
 
+export interface ProjectAttachment {
+  label: string
+  url: string
+}
+
 export interface QuarterHighlight {
   quarter: string
   focus: string
@@ -15,6 +20,7 @@ export interface QuarterHighlight {
     impact: string
     tag?: string
     images?: string[]
+    attachments?: ProjectAttachment[]
   }[]
 }
 
@@ -532,5 +538,137 @@ export const years: Record<number, YearData> = {
       },
     ],
   },
-  // Add more years as needed
+  2026: {
+    description: 'Owning end-to-end operational workflows and critical front-end architecture for Outbound, Platform, and JUMP squads.',
+    role: 'Front-End Engineer',
+    focusAreas: ['Outbound', 'Platform', 'JUMP'],
+    context: 'FBN / WMS Systems',
+    yearOverview: {
+      statement: 'Q1 focus: Platform domain migration, inventory visibility, picking performance, outbound QC enhancements, and PDA brand generalization R&D.',
+      highlights: [
+        'Platform Fulfillment: Migrated box journey dashboard to .partners with role-based checks; supporting both .team and .partners.',
+        'Inventory Visibility: Added Platform Inventory Interface/Visibility to the platform fulfillment partners domain web app.',
+        'Picking Performance: Removed /status API bottleneck by updating state locally from /move_item response for faster job processing.',
+        'Outbound QC: Station tracking, QC/AWB landing page, BE-generated pending_qc reports, and duplicate message error cleanup.',
+        'PDA R&D: Exploring Zebra PDAs and generalizing support for any PDA brand across FBN External apps.',
+      ],
+    },
+    keyContributions: [
+      {
+        title: 'Platform Domain Migration',
+        description: 'Moved platform fulfillment box journey to .partners domain with role-based access; maintained compatibility with .team.',
+        category: 'Platform',
+      },
+      {
+        title: 'Inventory Visibility',
+        description: 'Brought inventory visibility into the platform fulfillment partners web app for better operational insight.',
+        category: 'Insights',
+      },
+      {
+        title: 'Picking App Performance',
+        description: 'Eliminated slow /status polling by driving local state from /move_item response, reducing latency and improving throughput.',
+        category: 'Performance',
+      },
+      {
+        title: 'Outbound QC Tooling',
+        description: 'Station tracking, duplicate prevention, QC/AWB landing page, and BE-generated reports for faster, cleaner operations.',
+        category: 'Reliability',
+      },
+      {
+        title: 'PDA Brand Generalization',
+        description: 'R&D to support Zebra and generalize FBN External apps for any PDA brand alongside existing Honeywell.',
+        category: 'Expansion',
+      },
+    ],
+    quarterlyHighlights: [
+      {
+        quarter: 'Q1 2026 (Jan–Feb)',
+        focus: 'Platform Migration, Visibility, Performance & QC',
+        projects: [
+          {
+            title: 'Platform Fulfillment Migration to Partners Domain',
+            description: 'Migrated the platform fulfillment box journey dashboard to .partners and added role-based checks, supporting both .team and .partners domains.',
+            features: [
+              'Domain Migration: Moved box journey dashboard to .partners with consistent UX.',
+              'Role-Based Access: Added checks so only authorized users can access platform fulfillment flows.',
+              'Dual Domain Support: Application works on both .team and .partners during and after transition.',
+            ],
+            impact: 'Unified platform fulfillment under partners domain; clearer access control and rollout path.',
+            tag: 'Platform',
+            images: [], // Add image paths when ready, e.g. /images/q1-2026/platform-fulfillment-1.svg
+            attachments: [
+              { label: 'Jira (FPL-720)', url: '#' },
+            ],
+          },
+          {
+            title: 'Inventory Visibility (Platform Team)',
+            description: 'Added Inventory Visibility to the platform fulfillment partners domain web app so operations can see and reason about platform inventory.',
+            features: [
+              'Platform Inventory Interface: New visibility layer in the partners domain web app.',
+              'Integration: Wired to backend for real-time inventory data and filters.',
+            ],
+            impact: 'Better visibility into platform inventory for operations and reduced blind spots in fulfillment.',
+            tag: 'Insights',
+            images: [],
+            attachments: [
+              { label: 'Figma', url: '#' },
+              { label: 'SOP / Google Docs', url: '#' },
+            ],
+          },
+          {
+            title: 'Picking App Performance Optimization',
+            description: 'Addressed user-reported slowness by removing dependency on the heavy /status API and updating local state from the /move_item response instead.',
+            features: [
+              'Bottleneck Analysis: Identified /status and /move_item as slow endpoints (1s+).',
+              'State Strategy: Replaced post-action /status polling with local state updates driven by /move_item response.',
+              'Fewer Round Trips: Item move (pending → picked/rejected) no longer triggers a separate /status call.',
+            ],
+            impact: 'Faster, more responsive picking experience; MDM release planned.',
+            tag: 'Performance',
+            images: [],
+            attachments: [], // Add Jira/issue link when available
+          },
+          {
+            title: 'Outbound QC Tool Enhancements',
+            description: 'Station tracking, duplicate station prevention, QC/AWB landing page updates, BE-generated pending_qc reports, and removal of duplicate message errors.',
+            features: [
+              'Station Tracking: Track QC/AWB stations and prevent duplicate station registration.',
+              'Landing Page: Updated to support both QC and AWB stations with clear entry points.',
+              'Reports: Ops dashboard pending_qc report now uses BE-generated reports for faster downloads.',
+              'Stability: Removed duplicate message errors in OB QC flows.',
+            ],
+            impact: 'Cleaner operations, faster report generation, and fewer user-facing errors.',
+            tag: 'Operational Efficiency',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-8041)', url: '#' },
+              { label: 'Jira (SCWR-8326)', url: '#' },
+              { label: 'Jira (SCWR-7947)', url: '#' },
+              { label: 'Jira (SCWR-8081)', url: '#' },
+            ],
+          },
+          {
+            title: 'Generalize Support for Any PDA Brand (R&D)',
+            description: 'R&D to evaluate Zebra PDAs (faster, modern vs. current Honeywell) and generalize FBN External apps to support any PDA brand, including printer compatibility.',
+            features: [
+              'Device Evaluation: Assessing Zebra PDAs already used by Minutes SC team for speed and updates.',
+              'Printer Compatibility: Checking Zebra printer compatibility across FBN External apps.',
+              'Generalization: Defining changes needed to support any PDA brand in the future.',
+            ],
+            impact: 'Cost optimization and device refresh path; foundation for multi-brand PDA support.',
+            tag: 'R&D',
+            images: [],
+            attachments: [], // Add design/decision doc links when available
+          },
+        ],
+      },
+    ],
+    achievements: [
+      {
+        title: '2026 Q1 Work Summary',
+        description: 'Platform migration, inventory visibility, picking performance, outbound QC enhancements, and PDA generalization R&D.',
+        technologies: ['React', 'TypeScript', 'React Native'],
+      },
+    ],
+  },
 }

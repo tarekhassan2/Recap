@@ -48,11 +48,7 @@ function YearPage() {
         {/* Cover Section */}
         <header className="year-header">
           <div className="year-badge">ANNUAL REVIEW</div>
-          <h1 className="year-title">
-            {year} Work Summary <br />
-            <span className="year-title-accent">Tarek Hassan</span>
-          </h1>
-          <p className="year-description">{yearData.description}</p>
+          <h1 className="year-title">{year} Work Summary</h1>
           {yearData.role && (
             <div className="year-meta">
               <div className="meta-item">
@@ -129,7 +125,7 @@ function YearPage() {
         {yearData.overallImpact && (
           <section className="content-section">
             <div className="impact-header">
-              <h2 className="section-title">2025 SUMMARY: Overall Impact</h2>
+              <h2 className="section-title">{yearNum} SUMMARY: Overall Impact</h2>
               <p className="impact-objective">
                 Delivering measurable value across new revenue channels, operational speed, and platform scalability.
               </p>
@@ -525,6 +521,29 @@ function QuarterCarousel({ quarter }: { quarter: { quarter: string; focus: strin
                   {project.impact && (
                     <div className="project-impact">
                       <strong>Impact:</strong> {project.impact}
+                    </div>
+                  )}
+
+                  {/* Project Attachments (Figma, Jira, Google Docs, etc.) */}
+                  {project.attachments && project.attachments.length > 0 && (
+                    <div className="project-attachments">
+                      <h5 className="project-attachments-title">
+                        <i className="fas fa-paperclip"></i> Links
+                      </h5>
+                      <div className="project-attachments-list">
+                        {project.attachments.map((att: { label: string; url: string }, aIdx: number) => (
+                          <a
+                            key={aIdx}
+                            href={att.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-attachment-link"
+                          >
+                            <i className="fas fa-external-link-alt"></i>
+                            {att.label}
+                          </a>
+                        ))}
+                      </div>
                     </div>
                   )}
 

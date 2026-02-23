@@ -467,6 +467,59 @@
   color: #1e293b;
 }
 
+/* Project Attachments (Figma, Jira, Google Docs, etc.) */
+.project-attachments {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+.project-attachments-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.project-attachments-title i {
+  color: #64748b;
+}
+
+.project-attachments-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-attachment-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  background: #f1f5f9;
+  color: #2563eb;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.project-attachment-link:hover {
+  background: #e0e7ff;
+  border-color: #2563eb;
+}
+
+.project-attachment-link i {
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+
 /* Project Images Section */
 .project-images-section {
   margin-top: auto;
