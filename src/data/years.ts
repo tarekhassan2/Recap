@@ -541,16 +541,16 @@ export const years: Record<number, YearData> = {
   2026: {
     description: 'Owning end-to-end operational workflows and critical front-end architecture for Outbound, Platform, and JUMP squads.',
     role: 'Front-End Engineer',
-    focusAreas: ['Outbound', 'Platform', 'JUMP'],
+    focusAreas: ['Outbound', 'Platform', 'JUMP', 'Internal tooling'],
     context: 'FBN / WMS Systems',
     yearOverview: {
-      statement: 'Q1 focus: Platform domain migration, inventory visibility, picking performance, outbound QC enhancements, and PDA brand generalization R&D.',
+      statement: 'Through Q3: platform migration and outbound reliability early year, then transfer/AWB/Packman depth in Q2, and in Q3 scanning enforcement, App Center, and raw ZPL printing toward warehouse rollout.',
       highlights: [
-        'Platform Fulfillment: Migrated box journey dashboard to .partners with role-based checks; supporting both .team and .partners.',
-        'Inventory Visibility: Added Platform Inventory Interface/Visibility to the platform fulfillment partners domain web app.',
-        'Picking Performance: Removed /status API bottleneck by updating state locally from /move_item response for faster job processing.',
-        'Outbound QC: Station tracking, QC/AWB landing page, BE-generated pending_qc reports, and duplicate message error cleanup.',
-        'PDA R&D: Exploring Zebra PDAs and generalizing support for any PDA brand across FBN External apps.',
+        'Platform & QC (Q1): Partners-domain fulfillment, inventory visibility, picking performance, outbound QC tooling, PDA brand R&D.',
+        'Transfers & AWB (Q2): Close-job approvals, STAS OB picking UI, faster/safer AWB printing, Packman packaging safeguards.',
+        'Scanning & services (Q3): Mandatory barcode scans in pick/sort, FT2/FT3 COS merge, Packman 3D + RN upgrade.',
+        'Platform tooling (Q3): Internal App Center for APK distribution; Telemetry dashboard; QZ certificate R&D.',
+        'Printing (Q3): Outbound AWB PDF → raw ZPL via QZ Tray (orientation, offsets, duration) — live ZT411 validation next.',
       ],
     },
     keyContributions: [
@@ -560,29 +560,29 @@ export const years: Record<number, YearData> = {
         category: 'Platform',
       },
       {
-        title: 'Inventory Visibility',
-        description: 'Brought inventory visibility into the platform fulfillment partners web app for better operational insight.',
-        category: 'Insights',
-      },
-      {
-        title: 'Picking App Performance',
-        description: 'Eliminated slow /status polling by driving local state from /move_item response, reducing latency and improving throughput.',
-        category: 'Performance',
-      },
-      {
-        title: 'Outbound QC Tooling',
-        description: 'Station tracking, duplicate prevention, QC/AWB landing page, and BE-generated reports for faster, cleaner operations.',
+        title: 'Outbound Printing Reliability',
+        description: 'Reduced AWB print latency, blocked rescans mid-print, unified returns/transfers printing, then delivered raw ZPL path for Zebra/QZ.',
         category: 'Reliability',
       },
       {
-        title: 'PDA Brand Generalization',
-        description: 'R&D to support Zebra and generalize FBN External apps for any PDA brand alongside existing Honeywell.',
+        title: 'Scan Enforcement',
+        description: 'Mandatory barcode scanning in picking and sortation to prevent bypass and strengthen warehouse data integrity.',
+        category: 'Operational Efficiency',
+      },
+      {
+        title: 'Internal App Center',
+        description: 'Built catalog, live production build home, build detail with QR/Jira links, and deployed under fn tech unit on noon.team.',
+        category: 'Platform',
+      },
+      {
+        title: 'Packman Packaging Intelligence',
+        description: 'Inner separation enforcement, international bigger-box warnings, and 3D packaging suggestion rendering.',
         category: 'Expansion',
       },
     ],
     quarterlyHighlights: [
       {
-        quarter: 'Q1 2026 (Jan–Feb)',
+        quarter: 'Q1 2026 (Jan–Mar)',
         focus: 'Platform Migration, Visibility, Performance & QC',
         projects: [
           {
@@ -595,7 +595,7 @@ export const years: Record<number, YearData> = {
             ],
             impact: 'Unified platform fulfillment under partners domain; clearer access control and rollout path.',
             tag: 'Platform',
-            images: [], // Add image paths when ready, e.g. /images/q1-2026/platform-fulfillment-1.svg
+            images: [],
             attachments: [
               { label: 'Jira (FPL-720)', url: '#' },
             ],
@@ -626,7 +626,7 @@ export const years: Record<number, YearData> = {
             impact: 'Faster, more responsive picking experience; MDM release planned.',
             tag: 'Performance',
             images: [],
-            attachments: [], // Add Jira/issue link when available
+            attachments: [],
           },
           {
             title: 'Outbound QC Tool Enhancements',
@@ -641,10 +641,10 @@ export const years: Record<number, YearData> = {
             tag: 'Operational Efficiency',
             images: [],
             attachments: [
-              { label: 'Jira (SCWR-8041)', url: '#' },
-              { label: 'Jira (SCWR-8326)', url: '#' },
-              { label: 'Jira (SCWR-7947)', url: '#' },
-              { label: 'Jira (SCWR-8081)', url: '#' },
+              { label: 'Jira (SCWR-8041)', url: 'https://next-square.atlassian.net/browse/SCWR-8041' },
+              { label: 'Jira (SCWR-8326)', url: 'https://next-square.atlassian.net/browse/SCWR-8326' },
+              { label: 'Jira (SCWR-7947)', url: 'https://next-square.atlassian.net/browse/SCWR-7947' },
+              { label: 'Jira (SCWR-8081)', url: 'https://next-square.atlassian.net/browse/SCWR-8081' },
             ],
           },
           {
@@ -658,16 +658,238 @@ export const years: Record<number, YearData> = {
             impact: 'Cost optimization and device refresh path; foundation for multi-brand PDA support.',
             tag: 'R&D',
             images: [],
-            attachments: [], // Add design/decision doc links when available
+            attachments: [],
+          },
+          {
+            title: 'SDD as a Service (Frontend)',
+            description: 'Dashboard and tote-status frontend for SDD-as-a-service, including SDD labeling on tote status.',
+            features: [
+              'Dashboard Changes: Frontend updates for SDD-as-a-service operational views.',
+              'Tote Status: Surface SDD on tote status app.',
+              'Testing Support: Frontend coverage for SDD-as-a-service validation.',
+            ],
+            impact: 'Enabled SDD-as-a-service visibility and testing on the FE side.',
+            tag: 'Platform',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-7658)', url: 'https://next-square.atlassian.net/browse/SCWR-7658' },
+              { label: 'Jira (SCWR-7705)', url: 'https://next-square.atlassian.net/browse/SCWR-7705' },
+              { label: 'Jira (SCWR-7832)', url: 'https://next-square.atlassian.net/browse/SCWR-7832' },
+            ],
+          },
+        ],
+      },
+      {
+        quarter: 'Q2 2026 (Apr–Jun)',
+        focus: 'Transfers, STAS Picking, AWB Printing & Packman',
+        projects: [
+          {
+            title: 'Transfer Close-Job Approvals & Client Fixes',
+            description: 'Close-job approval flows for RTV and Transfers, plus Namshi client code and Supermall (Rocket) transfer close-job fixes.',
+            features: [
+              'RTV Close Job Approval: FE for close-job approval path.',
+              'Transfers Close Job Approval: Parallel FE for transfer close jobs.',
+              'Client Fixes: Namshi client code; Supermall Rocket picking transfer close-job flow.',
+            ],
+            impact: 'Safer job closure for high-risk transfer/RTV paths; fewer client-specific close-job failures.',
+            tag: 'Operational Efficiency',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-8555)', url: 'https://next-square.atlassian.net/browse/SCWR-8555' },
+              { label: 'Jira (SCWR-8611)', url: 'https://next-square.atlassian.net/browse/SCWR-8611' },
+              { label: 'Jira (SCWR-8741)', url: 'https://next-square.atlassian.net/browse/SCWR-8741' },
+              { label: 'Jira (SCWR-8785)', url: 'https://next-square.atlassian.net/browse/SCWR-8785' },
+            ],
+          },
+          {
+            title: 'Transfer Job UX & Ops Reports',
+            description: 'End-of-job redirect home, same-zone job regenerate for transfers, packing report move to Ops dashboard, and not-eligible-to-pick report updates.',
+            features: [
+              'Job Lifecycle UX: Redirect to home at end of job; regenerate job in same zone for transfers.',
+              'Packing Report: Transfer packing report moved from HTML to Ops dashboard.',
+              'Eligibility Report: FE updates to not-eligible-to-pick report for transfers.',
+            ],
+            impact: 'Clearer transfer job completion loops and faster ops reporting.',
+            tag: 'Insights',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-8791)', url: 'https://next-square.atlassian.net/browse/SCWR-8791' },
+              { label: 'Jira (SCWR-8787)', url: 'https://next-square.atlassian.net/browse/SCWR-8787' },
+              { label: 'Jira (SCWR-8986)', url: 'https://next-square.atlassian.net/browse/SCWR-8986' },
+              { label: 'Jira (SCWR-8919)', url: 'https://next-square.atlassian.net/browse/SCWR-8919' },
+            ],
+          },
+          {
+            title: 'STAS Outbound Picking UI',
+            description: 'UI updates for STAS outbound picking to align warehouse operators with the STAS job model.',
+            features: [
+              'STAS OB Picking: Frontend updates for outbound picking under STAS.',
+            ],
+            impact: 'Aligned picking UX with STAS outbound assignment model.',
+            tag: 'Outbound',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-8861)', url: 'https://next-square.atlassian.net/browse/SCWR-8861' },
+            ],
+          },
+          {
+            title: 'AWB Printing Experience Improvements',
+            description: 'Faster AWB printing, block rescanning while printing, unified returns/transfers AWB path, deprecate old RTV tool, and QC completion reload cleanup.',
+            features: [
+              'Latency: Reduced AWB printing time.',
+              'Safety: Block AWB rescanning while a print is in flight.',
+              'Unification: Same AWB printing path for returns and transfers; deprecate legacy RTV tool from infra.',
+              'QC UX: Remove reload confirmation on outbound QC completion screen.',
+            ],
+            impact: 'Faster, safer warehouse printing with less tool sprawl.',
+            tag: 'Reliability',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-9011)', url: 'https://next-square.atlassian.net/browse/SCWR-9011' },
+              { label: 'Jira (SCWR-9210)', url: 'https://next-square.atlassian.net/browse/SCWR-9210' },
+              { label: 'Jira (SCWR-9028)', url: 'https://next-square.atlassian.net/browse/SCWR-9028' },
+              { label: 'Jira (SCWR-9284)', url: 'https://next-square.atlassian.net/browse/SCWR-9284' },
+              { label: 'Jira (SCWR-9240)', url: 'https://next-square.atlassian.net/browse/SCWR-9240' },
+              { label: 'Parent (SCWR-9286)', url: 'https://next-square.atlassian.net/browse/SCWR-9286' },
+            ],
+          },
+          {
+            title: 'Packman Packaging Suggestions',
+            description: 'R&D for 3D packaging suggestion rendering and bigger-box warning for international orders.',
+            features: [
+              '3D R&D: Explored 3D rendering for Packman packaging suggestions.',
+              'International: Bigger-box warning for international orders.',
+            ],
+            impact: 'Clearer packaging guidance and fewer wrong-size boxes on international flows.',
+            tag: 'R&D',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-8935)', url: 'https://next-square.atlassian.net/browse/SCWR-8935' },
+              { label: 'Jira (SCWR-9199)', url: 'https://next-square.atlassian.net/browse/SCWR-9199' },
+            ],
+          },
+        ],
+      },
+      {
+        quarter: 'Q3 2026 (Jul–Aug)',
+        focus: 'Scan Enforcement, App Center, Raw ZPL & Platform Tooling',
+        projects: [
+          {
+            title: 'Mandatory Barcode Scanning (Pick & Sort)',
+            description: 'Enforced mandatory barcode scanning during picking and sortation across systems to prevent skip/bypass.',
+            features: [
+              'Picking: Mandatory barcode scan enforcement in picking flows.',
+              'Sortation: Mandatory barcode scan enforcement in sortation flows.',
+              'Sortation Filter: Queue type filter on Sortation Outbound screen.',
+            ],
+            impact: 'Stronger scan discipline and cleaner warehouse event data.',
+            tag: 'Operational Efficiency',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-9488)', url: 'https://next-square.atlassian.net/browse/SCWR-9488' },
+              { label: 'Jira (SCWR-9292)', url: 'https://next-square.atlassian.net/browse/SCWR-9292' },
+              { label: 'Jira (SCWR-9571)', url: 'https://next-square.atlassian.net/browse/SCWR-9571' },
+            ],
+          },
+          {
+            title: 'Outbound Services & STASS Performance',
+            description: 'Merged FT2/FT3 customer outbound services on FE and addressed STASS job assignment slowness.',
+            features: [
+              'COS Merge: Frontend merge of FT2 and FT3 customer outbound services.',
+              'STASS: Investigated/fixed slowness in STASS jobs assignment.',
+            ],
+            impact: 'Simpler outbound service surface and more responsive job assignment.',
+            tag: 'Performance',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-9450)', url: 'https://next-square.atlassian.net/browse/SCWR-9450' },
+              { label: 'Jira (SCWR-9126)', url: 'https://next-square.atlassian.net/browse/SCWR-9126' },
+            ],
+          },
+          {
+            title: 'Packman Inner Separation & 3D Suggestions',
+            description: 'Inner separation packing enforcement in Packman and shipped 3D rendering for packaging suggestions; React Native upgrade on fbn-mobile-web.',
+            features: [
+              'Inner Separation: FE enforcement for inner separation packing rules.',
+              '3D Suggestions: 3D rendering for Packman packaging suggestions.',
+              'RN Upgrade: Upgraded React Native on fbn-mobile-web toward current platform.',
+            ],
+            impact: 'Better packaging compliance and modernized mobile platform baseline.',
+            tag: 'Expansion',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-9118)', url: 'https://next-square.atlassian.net/browse/SCWR-9118' },
+              { label: 'Jira (SCWR-9557)', url: 'https://next-square.atlassian.net/browse/SCWR-9557' },
+              { label: 'Jira (SCWR-6388)', url: 'https://next-square.atlassian.net/browse/SCWR-6388' },
+            ],
+          },
+          {
+            title: 'Internal App Center',
+            description: 'Centralized APK catalog for internal tools: list/filter/search, live production build home, build detail with download/QR/Jira links, clearer GCS errors, deployed under fn tech unit.',
+            features: [
+              'Catalog: List, filter, search, and sort APKs.',
+              'Home: Show live production build from latest/config.json.',
+              'Build Detail: Download, QR, branch and Jira links.',
+              'Ops: Surface GCS permission/catalog errors; deploy on noon.team fn tech unit.',
+            ],
+            impact: 'Faster, safer internal APK distribution with clearer ownership under fn tech.',
+            tag: 'Platform',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-9948)', url: 'https://next-square.atlassian.net/browse/SCWR-9948' },
+              { label: 'Jira (SCWR-9985)', url: 'https://next-square.atlassian.net/browse/SCWR-9985' },
+              { label: 'Jira (SCWR-9986)', url: 'https://next-square.atlassian.net/browse/SCWR-9986' },
+              { label: 'Jira (SCWR-9987)', url: 'https://next-square.atlassian.net/browse/SCWR-9987' },
+              { label: 'Jira (SCWR-9990)', url: 'https://next-square.atlassian.net/browse/SCWR-9990' },
+              { label: 'Jira (SCWR-9991)', url: 'https://next-square.atlassian.net/browse/SCWR-9991' },
+            ],
+          },
+          {
+            title: 'Outbound Raw ZPL AWB Printing',
+            description: 'Replaced PDF AWB path with raw ZPL: ZPL fetch, QZ Tray forceRaw, ZT411 orientation fixes, Offset X/Y via ^LH, and print-duration feedback. Live warehouse validation and prod rollout remaining.',
+            features: [
+              'Fetch: Switch outbound AWB from PDF to ZPL endpoint.',
+              'Print: Raw ZPL via QZ Tray (forceRaw).',
+              'Hardware: ZT411 orientation (^GFA 90° CW + ^POI); Offset X/Y via ^LH.',
+              'UX: Show send-to-printer duration on success.',
+            ],
+            impact: 'Warehouse-ready raw label path; pending ZT411 live test then production rollout.',
+            tag: 'Reliability',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-9944)', url: 'https://next-square.atlassian.net/browse/SCWR-9944' },
+              { label: 'Jira (SCWR-9993)', url: 'https://next-square.atlassian.net/browse/SCWR-9993' },
+              { label: 'Jira (SCWR-9994)', url: 'https://next-square.atlassian.net/browse/SCWR-9994' },
+              { label: 'Jira (SCWR-9995)', url: 'https://next-square.atlassian.net/browse/SCWR-9995' },
+              { label: 'Jira (SCWR-9996)', url: 'https://next-square.atlassian.net/browse/SCWR-9996' },
+              { label: 'Jira (SCWR-9997)', url: 'https://next-square.atlassian.net/browse/SCWR-9997' },
+              { label: 'Live test (SCWR-9998)', url: 'https://next-square.atlassian.net/browse/SCWR-9998' },
+              { label: 'Rollout (SCWR-9999)', url: 'https://next-square.atlassian.net/browse/SCWR-9999' },
+            ],
+          },
+          {
+            title: 'Telemetry Dashboard & QZ Certificate R&D',
+            description: 'Built Telemetry Dashboard UI and completed FE R&D for in-house QZ certificate upgrade.',
+            features: [
+              'Telemetry: Dashboard UI for operational telemetry views.',
+              'QZ R&D: In-house QZ certificate upgrade exploration on FE.',
+            ],
+            impact: 'Better observability surface and path to owned QZ certificate lifecycle.',
+            tag: 'Platform',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-9667)', url: 'https://next-square.atlassian.net/browse/SCWR-9667' },
+              { label: 'Jira (SCWR-9607)', url: 'https://next-square.atlassian.net/browse/SCWR-9607' },
+            ],
           },
         ],
       },
     ],
     achievements: [
       {
-        title: '2026 Q1 Work Summary',
-        description: 'Platform migration, inventory visibility, picking performance, outbound QC enhancements, and PDA generalization R&D.',
-        technologies: ['React', 'TypeScript', 'React Native'],
+        title: '2026 YTD Work Summary (through early Aug)',
+        description: 'Platform migration, transfer/AWB reliability, scan enforcement, App Center, Packman packaging, and raw ZPL printing toward warehouse rollout.',
+        technologies: ['React', 'TypeScript', 'React Native', 'QZ Tray', 'ZPL'],
       },
     ],
   },
