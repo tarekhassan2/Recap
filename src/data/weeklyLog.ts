@@ -25,6 +25,22 @@ export interface WeeklyLogEntry {
 
 export const weeklyLog: WeeklyLogEntry[] = [
   {
+    weekId: '2026-W35',
+    range: { start: '2026-08-21', end: '2026-08-28' },
+    year: 2026,
+    quarter: 'Q3',
+    highlights: ['Light week — no newly verifiable SCWR Completed slices in available sources'],
+    shipped: [],
+    inProgress: [
+      'SCWR-9948 — App Center epic (carryover; status not re-verified)',
+      'SCWR-10004 — Noon Tray / in-house QZ cert migration (carryover; status not re-verified)',
+      'SCWR-9286 — AWB printing experience parent (carryover; status not re-verified)',
+      'SCWR-9973 — Repackaging FE in Testing Frontend (carryover; status not re-verified)',
+    ],
+    notes:
+      'Light week. Atlassian MCP needsAuth (interactive auth unavailable in cloud agent). fastfishio watched-repo PR search unauthorized. No invented tickets; years.ts left unchanged. Mid-week ops digest (2026-08-24) had the same blockers.',
+  },
+  {
     weekId: '2026-W34',
     range: { start: '2026-08-14', end: '2026-08-21' },
     year: 2026,
