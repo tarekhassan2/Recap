@@ -25,6 +25,67 @@ export interface WeeklyLogEntry {
 
 export const weeklyLog: WeeklyLogEntry[] = [
   {
+    weekId: '2026-W37',
+    range: { start: '2026-09-05', end: '2026-09-12' },
+    year: 2026,
+    quarter: 'Q3',
+    highlights: [
+      'Light week for Completed closes — App Center follow-ons continued (alt deploy, multi-app imembers pivot)',
+      'Backfilled 2026-W36 below (prior automation could not push)',
+    ],
+    shipped: [
+      {
+        summary: 'App Center: appcenter-alt deploy group for isolated prd deploys (live Service stays on all)',
+        jiraKeys: ['SCWR-9948'],
+        prUrls: ['https://github.com/fastfishio/fn-appcenter/pull/20'],
+      },
+    ],
+    inProgress: [
+      'SCWR-9948 — App Center epic (alt deploy follow-up #21; View details on succeeded builds #18)',
+      'SCWR-10505 — Land FBN + nclog picker with imembers-gated Pending (draft fn-appcenter#22)',
+      'SCWR-10331 / SCWR-10330 — multi-app nclog slice moved onto SCWR-10505 (ACL HTTP path abandoned)',
+      'SCWR-10004 — Noon Tray / in-house QZ cert migration',
+      'SCWR-9286 — AWB printing experience parent',
+    ],
+    notes:
+      'No SCWR Completed resolved in the W37 window. Shipped #20 credited from Jira “Follow-up to merged #20” on SCWR-9948; #21/#18/#22 still open/draft. fastfishio watched-repo PR API unauthorized — URLs from Jira comments only. years.ts folds W36 Completed + W37 alt-deploy progress.',
+  },
+  {
+    weekId: '2026-W36',
+    range: { start: '2026-08-28', end: '2026-09-04' },
+    year: 2026,
+    quarter: 'Q3',
+    highlights: [
+      'FMS repackaging BE integration draft (operator API, SIO/MIO/split/cancelled, AWB print)',
+      'App Center: hide Pending from non-approvers; RELEASE_NOTES upload/backfill closed',
+    ],
+    shipped: [
+      {
+        summary: 'FMS repackaging FE↔BE integration (draft PR; staging blocked on VS routing)',
+        jiraKeys: ['SCWR-9974'],
+        prUrls: ['https://github.com/fastfishio/sc-fms-team/pull/110'],
+      },
+      {
+        summary: 'App Center: ensure new uploads write RELEASE_NOTES.md (+ optional backfill)',
+        jiraKeys: ['SCWR-10048'],
+      },
+      {
+        summary: 'App Center: hide Pending builds from users who cannot approve',
+        jiraKeys: ['SCWR-9948'],
+        prUrls: ['https://github.com/fastfishio/fn-appcenter/pull/10'],
+      },
+    ],
+    inProgress: [
+      'SCWR-9948 — App Center epic (multi-app / nclog open PRs)',
+      'SCWR-10331 — Browse FBN and nclog apps from one App Center picker',
+      'SCWR-10330 — Per-app live pointer filename and Pending visibility',
+      'SCWR-10004 — Noon Tray / in-house QZ cert migration',
+      'SCWR-9286 — AWB printing experience parent',
+    ],
+    notes:
+      'Backfill: W36 never reached origin/main (GH Contents write was broken). SCWR-9973 Completed in this window but already credited in W34 — closeout only. Prefer resolved window for Completed.',
+  },
+  {
     weekId: '2026-W35',
     range: { start: '2026-08-21', end: '2026-08-28' },
     year: 2026,
