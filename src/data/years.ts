@@ -544,13 +544,14 @@ export const years: Record<number, YearData> = {
     focusAreas: ['Outbound', 'Platform', 'JUMP', 'Internal tooling'],
     context: 'FBN / WMS Systems',
     yearOverview: {
-      statement: 'Through mid-Q3: platform migration and outbound reliability early year, then transfer/AWB/Packman depth in Q2, and in Q3 scanning enforcement, App Center, raw ZPL warehouse rollout, Noon Tray ownership, and STAS/FMS warehouse UX.',
+      statement: 'Through mid/late Q3: platform migration and outbound reliability early year, then transfer/AWB/Packman depth in Q2, and in Q3 scanning enforcement, App Center (Pending ACL + alt deploy), raw ZPL warehouse rollout, Noon Tray ownership, and FMS repackaging FE↔BE.',
       highlights: [
         'Platform & QC (Q1): Partners-domain fulfillment, inventory visibility, picking performance, outbound QC tooling, PDA brand R&D.',
         'Transfers & AWB (Q2): Close-job approvals, STAS OB picking UI, faster/safer AWB printing, Packman packaging safeguards.',
         'Scanning & services (Q3): Mandatory barcode scans in pick/sort + FMS QC; HRV lid tote FE; FT2/FT3 COS merge; Packman 3D + RN upgrade.',
-        'Platform tooling (Q3): App Center through shareable URLs/RELEASE_NOTES, pending queue, MDM→Chat publish; Telemetry FE↔BE; Ops duplicate-fetch fix.',
+        'Platform tooling (Q3): App Center through shareable URLs/RELEASE_NOTES write, Pending ACL hide, MDM→Chat, appcenter-alt isolated deploys; Telemetry FE↔BE; Ops duplicate-fetch fix.',
         'Printing (Q3): Outbound AWB PDF → raw ZPL live-tested and rolled out; Noon Tray installer + silent-print validation off rented QZ cert.',
+        'FMS repackaging (Q3): Dedicated tab plus FE↔BE integration draft for CB shipment repack flows.',
       ],
     },
     keyContributions: [
@@ -571,7 +572,7 @@ export const years: Record<number, YearData> = {
       },
       {
         title: 'Internal App Center',
-        description: 'Built catalog, live production home, shareable URLs, RELEASE_NOTES, pending Cloud Builds (with approve path), MDM Publish→Chat, and deployed under fn tech unit on noon.team.',
+        description: 'Built catalog, live production home, shareable URLs, RELEASE_NOTES write path, Pending ACL (approver-only), MDM Publish→Chat, appcenter-alt isolated deploys, and fn tech unit hosting on noon.team.',
         category: 'Platform',
       },
       {
@@ -771,8 +772,8 @@ export const years: Record<number, YearData> = {
         ],
       },
       {
-        quarter: 'Q3 2026 (Jul–Aug)',
-        focus: 'Scan Enforcement, App Center, Raw ZPL, Noon Tray & Ops Tooling',
+        quarter: 'Q3 2026 (Jul–Sep)',
+        focus: 'Scan Enforcement, App Center, Raw ZPL, Noon Tray, FMS Repackaging & Ops Tooling',
         projects: [
           {
             title: 'Mandatory Barcode Scanning (Pick & Sort)',
@@ -829,17 +830,19 @@ export const years: Record<number, YearData> = {
           },
           {
             title: 'Internal App Center',
-            description: 'Centralized APK catalog for internal tools: list/filter/search, live production build home, shareable URLs, RELEASE_NOTES, pending Cloud Builds, MDM Publish→Google Chat, clearer GCS errors, deployed under fn tech unit.',
+            description: 'Centralized APK catalog for internal tools: list/filter/search, live production build home, shareable URLs, RELEASE_NOTES write/backfill, Pending ACL, MDM Publish→Google Chat, appcenter-alt isolated deploys, clearer GCS errors, deployed under fn tech unit.',
             features: [
               'Catalog: List, filter, search, and sort APKs; URL-persisted filters.',
               'Home: Show live production build from latest/config.json.',
               'Build Detail: Download, QR, branch and Jira links; RELEASE_NOTES when present.',
               'Shareable URLs: /builds/<app>/v<version> with production preference.',
-              'Pending: Cloud Build queue with collapse-per-env+branch, approve path, and cache warm.',
+              'Pending: Cloud Build queue with collapse-per-env+branch, approve path, cache warm, and approver-only visibility.',
+              'RELEASE_NOTES write: New uploads write RELEASE_NOTES.md; optional historical backfill.',
               'MDM Publish: Draft release tickets and send to Google Chat via webhook (GCS stays read-only).',
+              'Alt deploy: appcenter-alt prd target so isolated deploys do not retag live production Service.',
               'Ops: Surface GCS permission/catalog errors; deploy on noon.team fn tech unit.',
             ],
-            impact: 'Faster, safer internal APK distribution with clearer ownership under fn tech and release-notify path for MDM.',
+            impact: 'Faster, safer internal APK distribution with clearer ownership under fn tech, release-notify path for MDM, and safer alt deploys.',
             tag: 'Platform',
             images: [],
             attachments: [
@@ -853,7 +856,9 @@ export const years: Record<number, YearData> = {
               { label: 'Jira (SCWR-9989)', url: 'https://next-square.atlassian.net/browse/SCWR-9989' },
               { label: 'Jira (SCWR-9992)', url: 'https://next-square.atlassian.net/browse/SCWR-9992' },
               { label: 'Jira (SCWR-10001)', url: 'https://next-square.atlassian.net/browse/SCWR-10001' },
+              { label: 'Jira (SCWR-10048)', url: 'https://next-square.atlassian.net/browse/SCWR-10048' },
               { label: 'Jira (SCWR-10194)', url: 'https://next-square.atlassian.net/browse/SCWR-10194' },
+              { label: 'Jira (SCWR-10505)', url: 'https://next-square.atlassian.net/browse/SCWR-10505' },
             ],
           },
           {
@@ -933,17 +938,21 @@ export const years: Record<number, YearData> = {
             ],
           },
           {
-            title: 'FMS Repackaging Tab',
-            description: 'Repackaging as a dedicated FMS route tree and navbar tab, separate from QC Home.',
+            title: 'FMS Repackaging Tab & BE Integration',
+            description: 'Repackaging as a dedicated FMS route tree and navbar tab, plus FE↔BE integration for CB shipment repack jobs (SIO/MIO/split/cancelled, domestic AWB print).',
             features: [
               'Routing: Dedicated /repackaging route tree with redirects from stale /home/repackaging paths.',
               'Nav: Home | Repackaging | Print AWB tab layout; QC Home kept QC-only.',
+              'BE integration: Operator API client (job/start, pack, close, exit-request) with status-poller-driven UI.',
+              'Flows: SIO / MIO / split / cancelled end-to-end; domestic AWB printing via QZ Tray on box-code step.',
             ],
-            impact: 'Clearer operator separation between QC and repackaging workflows (Testing Frontend).',
+            impact: 'Clearer operator separation between QC and repackaging; FE ready for staging once outbound VS routing ships.',
             tag: 'Workflow',
             images: [],
             attachments: [
               { label: 'Jira (SCWR-9973)', url: 'https://next-square.atlassian.net/browse/SCWR-9973' },
+              { label: 'Jira (SCWR-9974)', url: 'https://next-square.atlassian.net/browse/SCWR-9974' },
+              { label: 'Parent (SCWR-9934)', url: 'https://next-square.atlassian.net/browse/SCWR-9934' },
             ],
           },
         ],
@@ -951,8 +960,8 @@ export const years: Record<number, YearData> = {
     ],
     achievements: [
       {
-        title: '2026 YTD Work Summary (through mid-Aug)',
-        description: 'Platform migration, transfer/AWB reliability, scan enforcement (incl. FMS QC), App Center, Packman packaging, raw ZPL warehouse rollout, HRV lid tote FE, Noon Tray ownership, STAS urgent-picking contract, and FMS repackaging tab.',
+        title: '2026 YTD Work Summary (through mid-Sep)',
+        description: 'Platform migration, transfer/AWB reliability, scan enforcement (incl. FMS QC), App Center (Pending ACL + RELEASE_NOTES write + alt deploy), Packman packaging, raw ZPL warehouse rollout, HRV lid tote FE, Noon Tray ownership, STAS urgent-picking contract, and FMS repackaging tab + BE integration.',
         technologies: ['React', 'TypeScript', 'React Native', 'QZ Tray', 'ZPL', 'Noon Tray'],
       },
     ],
