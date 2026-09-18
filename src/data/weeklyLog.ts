@@ -25,6 +25,25 @@ export interface WeeklyLogEntry {
 
 export const weeklyLog: WeeklyLogEntry[] = [
   {
+    weekId: '2026-W38',
+    range: { start: '2026-09-11', end: '2026-09-18' },
+    year: 2026,
+    quarter: 'Q3',
+    highlights: [
+      'Light week — closed abandoned ACL-HTTP multi-app slices; imembers landing continues on SCWR-10505',
+    ],
+    shipped: [],
+    inProgress: [
+      'SCWR-9948 — App Center epic (#18 View details on succeeded builds; #21 leave prod deploy group all)',
+      'SCWR-10505 — Land FBN + nclog picker with imembers-gated Pending (draft fn-appcenter#22)',
+      'SCWR-10060 — Roll out outbound raw ZPL AWB printing to production',
+      'SCWR-10004 / SCWR-10010 — Noon Tray / in-house QZ cert migration (cert custody)',
+      'SCWR-9286 — AWB printing experience parent',
+    ],
+    notes:
+      'Light week. Completed SCWR-10330/SCWR-10331 were closeouts of the abandoned ACL-HTTP multi-app path (work moved to SCWR-10505), not feature ships — omitted from shipped. No new Merged PR evidence in-window beyond W37-credited fn-appcenter#20. fastfishio watched-repo PR API still unauthorized. years.ts left unchanged (Q3 App Center already includes SCWR-10505).',
+  },
+  {
     weekId: '2026-W37',
     range: { start: '2026-09-05', end: '2026-09-12' },
     year: 2026,
