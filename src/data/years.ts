@@ -544,7 +544,7 @@ export const years: Record<number, YearData> = {
     focusAreas: ['Outbound', 'Platform', 'JUMP', 'Internal tooling'],
     context: 'FBN / WMS Systems',
     yearOverview: {
-      statement: 'Through mid/late Q3: platform migration and outbound reliability early year, then transfer/AWB/Packman depth in Q2, and in Q3 scanning enforcement, App Center (Pending ACL + alt deploy), raw ZPL warehouse rollout, Noon Tray ownership, and FMS repackaging FE↔BE.',
+      statement: 'Into early Q4: Q1–Q3 platform/outbound depth carried forward; Q4 opens with Ops dashboard picking visibility, Noon Tray cert cutover on FMS, wireless AWB auto-print on prod, and kiosk WebUSB printing R&D.',
       highlights: [
         'Platform & QC (Q1): Partners-domain fulfillment, inventory visibility, picking performance, outbound QC tooling, PDA brand R&D.',
         'Transfers & AWB (Q2): Close-job approvals, STAS OB picking UI, faster/safer AWB printing, Packman packaging safeguards.',
@@ -552,6 +552,7 @@ export const years: Record<number, YearData> = {
         'Platform tooling (Q3): App Center through shareable URLs/RELEASE_NOTES write, Pending ACL hide, MDM→Chat, appcenter-alt isolated deploys; Telemetry FE↔BE; Ops duplicate-fetch fix.',
         'Printing (Q3): Outbound AWB PDF → raw ZPL live-tested and rolled out; Noon Tray installer + silent-print validation off rented QZ cert.',
         'FMS repackaging (Q3): Dedicated tab plus FE↔BE integration draft for CB shipment repack flows.',
+        'Ops & printing (Q4): Picking Pendency overview KPIs + multi-warehouse Summarised reports; Noon Tray/QZ cert migration closed on FMS; wireless AWB auto-print on prod; kiosk WebUSB R&D.',
       ],
     },
     keyContributions: [
@@ -562,8 +563,13 @@ export const years: Record<number, YearData> = {
       },
       {
         title: 'Outbound Printing Reliability',
-        description: 'Reduced AWB print latency, blocked rescans mid-print, unified returns/transfers printing, delivered raw ZPL path, and advanced Noon Tray ownership off the rented QZ certificate.',
+        description: 'Reduced AWB print latency, blocked rescans mid-print, unified returns/transfers printing, delivered raw ZPL path, closed Noon Tray / in-house QZ cert migration on FMS, and shipped wireless AWB auto-print to prod.',
         category: 'Reliability',
+      },
+      {
+        title: 'Ops Dashboard Visibility',
+        description: 'Picking Pendency overview KPI cards and multi-warehouse filters on Summarised reports so ops can scan cutoff risk and capacity without tab-hopping.',
+        category: 'Insights',
       },
       {
         title: 'Scan Enforcement',
@@ -957,12 +963,68 @@ export const years: Record<number, YearData> = {
           },
         ],
       },
+      {
+        quarter: 'Q4 2026 (Oct–Dec)',
+        focus: 'Ops Dashboard Visibility, Noon Tray Cert Cutover & Printing Automation',
+        projects: [
+          {
+            title: 'Ops Dashboard Picking & Summarised Reports',
+            description: 'Picking Pendency Overview KPI cards (eligible / cutoff risk / not-eligible / capacity) and multi-warehouse select on Summarised reports Status Summary.',
+            features: [
+              'Overview tab: Aggregated pendency cards with 30s refresh; card click opens the matching filtered table tab.',
+              'Cutoff risk: Breach age plus due-in buckets for shipping cutoff pressure.',
+              'Multi-warehouse: Summarised reports Status Summary accepts multiple warehouses in one view.',
+            ],
+            impact: 'Ops can scan picking health and multi-warehouse status without hopping tabs or single-warehouse filters.',
+            tag: 'Insights',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-10677)', url: 'https://next-square.atlassian.net/browse/SCWR-10677' },
+              { label: 'Jira (SCWR-10674)', url: 'https://next-square.atlassian.net/browse/SCWR-10674' },
+            ],
+          },
+          {
+            title: 'Noon Tray / In-house QZ Certificate Migration',
+            description: 'Closed the FMS cutover off the rented QZ cert: re-vendored QZ JS 2.2.6, signed with Noon QZ Authority, and moved the signing private key into nctl app secrets.',
+            features: [
+              'Re-vendor: FMS QZ Tray JS 2.2.6 from noon-tray with FMS host-list customizations retained.',
+              'Noon cert: Silent print signed with Noon QZ Authority (staging verified).',
+              'Custody: NOON_TRAY_KEY via nctl on sc-fms-team; runtime fetch through remoteconfig secrets.',
+            ],
+            impact: 'Owned silent-print stack on FMS staging; stations no longer depend on the rented QZ certificate path for this flow.',
+            tag: 'Platform',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-10004)', url: 'https://next-square.atlassian.net/browse/SCWR-10004' },
+              { label: 'Jira (SCWR-10009)', url: 'https://next-square.atlassian.net/browse/SCWR-10009' },
+              { label: 'Jira (SCWR-10010)', url: 'https://next-square.atlassian.net/browse/SCWR-10010' },
+            ],
+          },
+          {
+            title: 'Wireless AWB Auto-Print & Kiosk WebUSB R&D',
+            description: 'Auto-print AWB after can/verify on wireless printers (prod v3.96) with LMS race retries; kiosk R&D chose WebUSB direct ZPL over a local print-helper process.',
+            features: [
+              'Auto-print: Print without a button tap once AWB is canned and verified; ZPL fetch retries before giving up.',
+              'Prod: Wireless auto-print on fbn-mobile-app v3.96.',
+              'Kiosk R&D: Compared middleman helper vs WebUSB; WebUSB to Zebra ZD220 chosen for Android kiosks that cannot run Noon Tray.',
+            ],
+            impact: 'Fewer manual print taps on wireless stations; clear path for kiosk printing where QZ/Noon Tray cannot run.',
+            tag: 'Efficiency',
+            images: [],
+            attachments: [
+              { label: 'Jira (SCWR-10259)', url: 'https://next-square.atlassian.net/browse/SCWR-10259' },
+              { label: 'Jira (SCWR-10696)', url: 'https://next-square.atlassian.net/browse/SCWR-10696' },
+              { label: 'Parent (SCWR-9286)', url: 'https://next-square.atlassian.net/browse/SCWR-9286' },
+            ],
+          },
+        ],
+      },
     ],
     achievements: [
       {
-        title: '2026 YTD Work Summary (through mid-Sep)',
-        description: 'Platform migration, transfer/AWB reliability, scan enforcement (incl. FMS QC), App Center (Pending ACL + RELEASE_NOTES write + alt deploy), Packman packaging, raw ZPL warehouse rollout, HRV lid tote FE, Noon Tray ownership, STAS urgent-picking contract, and FMS repackaging tab + BE integration.',
-        technologies: ['React', 'TypeScript', 'React Native', 'QZ Tray', 'ZPL', 'Noon Tray'],
+        title: '2026 YTD Work Summary (through early Oct)',
+        description: 'Platform migration, transfer/AWB reliability, scan enforcement (incl. FMS QC), App Center (Pending ACL + RELEASE_NOTES write + alt deploy), Packman packaging, raw ZPL warehouse rollout, HRV lid tote FE, Noon Tray ownership + QZ cert cutover on FMS, STAS urgent-picking contract, FMS repackaging tab + BE integration, Ops dashboard picking overview / multi-warehouse summaries, and wireless AWB auto-print on prod.',
+        technologies: ['React', 'TypeScript', 'React Native', 'QZ Tray', 'ZPL', 'Noon Tray', 'WebUSB'],
       },
     ],
   },

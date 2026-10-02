@@ -25,6 +25,96 @@ export interface WeeklyLogEntry {
 
 export const weeklyLog: WeeklyLogEntry[] = [
   {
+    weekId: '2026-W40',
+    range: { start: '2026-09-25', end: '2026-10-02' },
+    year: 2026,
+    quarter: 'Q4',
+    highlights: [
+      'Ops dashboard: Picking Pendency overview KPI cards + multi-warehouse Summarised reports',
+      'Noon Tray / QZ cert migration closed — FMS silent print on Noon cert + NOON_TRAY_KEY (staging)',
+      'Wireless AWB auto-print on prod v3.96; kiosk printing R&D chose WebUSB over local helper',
+      'Backfilled 2026-W39 and 2026-W38 below (W38 PR #5 never merged; W39 automation gap)',
+    ],
+    shipped: [
+      {
+        summary: 'Ops dashboard: aggregated overview status cards on Picking Pendency report',
+        jiraKeys: ['SCWR-10677'],
+        prUrls: [
+          'https://github.com/fastfishio/sc-webtools/pull/307',
+          'https://github.com/fastfishio/sc-fbn-consolidation-api/pull/1355',
+        ],
+      },
+      {
+        summary: 'Ops dashboard: multi-warehouse select on Summarised reports',
+        jiraKeys: ['SCWR-10674'],
+        prUrls: [
+          'https://github.com/fastfishio/sc-webtools/pull/306',
+          'https://github.com/fastfishio/sc-fbn-consolidation-api/pull/1354',
+        ],
+      },
+      {
+        summary: 'Noon Tray / in-house QZ cert migration — FMS re-vendor 2.2.6 + Noon cert + secrets custody',
+        jiraKeys: ['SCWR-10004', 'SCWR-10009', 'SCWR-10010'],
+      },
+      {
+        summary: 'Wireless AWB auto-print without button press (race-retry fix; prod v3.96)',
+        jiraKeys: ['SCWR-10259'],
+      },
+      {
+        summary: 'Kiosk printing R&D — WebUSB direct ZPL chosen over middleman print helper',
+        jiraKeys: ['SCWR-10696'],
+      },
+    ],
+    inProgress: [
+      'SCWR-10060 — Roll out outbound raw ZPL AWB printing to production',
+      'SCWR-9286 — AWB printing experience parent',
+    ],
+    notes:
+      'Also To Do Frontend: SCWR-10656 (forward ops domain visualization). App Center SCWR-9948/SCWR-10505 Completed in W39 without new Merged PR evidence beyond prior weeks — see W39 notes. fastfishio watched-repo PR API unauthorized; PR URLs from Jira comments only. years.ts: new Q4 2026 block.',
+  },
+  {
+    weekId: '2026-W39',
+    range: { start: '2026-09-18', end: '2026-09-25' },
+    year: 2026,
+    quarter: 'Q3',
+    highlights: [
+      'Outbound QC 3D packing-guide tester config (When + Style) on fbn-outbound-alt',
+      'App Center epic / multi-app imembers ticket marked Completed (no new merge evidence)',
+    ],
+    shipped: [
+      {
+        summary: 'Outbound QC Pacman 3D packing-guide tester config (localStorage When + Style)',
+        jiraKeys: ['SCWR-10621'],
+      },
+    ],
+    inProgress: [
+      'SCWR-10060 — Roll out outbound raw ZPL AWB printing to production',
+      'SCWR-10004 — Noon Tray / in-house QZ cert migration (then Completed in W40)',
+      'SCWR-9286 — AWB printing experience parent',
+    ],
+    notes:
+      'Backfill: no Friday run for W39. SCWR-9948 and SCWR-10505 Completed 2026-09-21; SCWR-10505 still only had draft fn-appcenter#22 — omitted from shipped (no Merged PR evidence). years.ts Q3 left unchanged for this slice (current-quarter rule → Q4 only on W40 run).',
+  },
+  {
+    weekId: '2026-W38',
+    range: { start: '2026-09-11', end: '2026-09-18' },
+    year: 2026,
+    quarter: 'Q3',
+    highlights: [
+      'Light week — closed abandoned ACL-HTTP multi-app slices; imembers landing continues on SCWR-10505',
+    ],
+    shipped: [],
+    inProgress: [
+      'SCWR-9948 — App Center epic (#18 View details on succeeded builds; #21 leave prod deploy group all)',
+      'SCWR-10505 — Land FBN + nclog picker with imembers-gated Pending (draft fn-appcenter#22)',
+      'SCWR-10060 — Roll out outbound raw ZPL AWB printing to production',
+      'SCWR-10004 / SCWR-10010 — Noon Tray / in-house QZ cert migration (cert custody)',
+      'SCWR-9286 — AWB printing experience parent',
+    ],
+    notes:
+      'Backfill from unmerged PR #5. Completed SCWR-10330/SCWR-10331 were closeouts of the abandoned ACL-HTTP multi-app path (work moved to SCWR-10505), not feature ships — omitted from shipped. No new Merged PR evidence in-window beyond W37-credited fn-appcenter#20.',
+  },
+  {
     weekId: '2026-W37',
     range: { start: '2026-09-05', end: '2026-09-12' },
     year: 2026,
