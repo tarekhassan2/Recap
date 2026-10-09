@@ -25,6 +25,29 @@ export interface WeeklyLogEntry {
 
 export const weeklyLog: WeeklyLogEntry[] = [
   {
+    weekId: '2026-W41',
+    range: { start: '2026-10-02', end: '2026-10-09' },
+    year: 2026,
+    quarter: 'Q4',
+    highlights: [
+      'FBN Ops Lens epic broken into 11 children; five core workstreams in Product Review (platform, live Forward Ops APIs/SSO, isometric UI, KPI audit, QC animation)',
+      'RTV Sort wall Pendency: current-leg + aging + target-shipped filters (draft PRs; Testing Frontend)',
+      'LMS serviceability check on seller RTV: implementation plan + product decisions (always-on, fail-open)',
+      'Carries W40/W39/W38 from unmerged PR #6 below',
+    ],
+    shipped: [],
+    inProgress: [
+      'SCWR-10656 — FBN Ops Lens (Product Review on SCWR-10981–10984, 10986; staffing/assistant still open)',
+      'SCWR-10876 — RTV Sort wall Pendency enhancements (Testing Frontend; draft sc-webtools#309 + consolidation-api#1378)',
+      'SCWR-10595 — LMS serviceability on seller lab RTV creation',
+      'SCWR-10882 — Wireless AWB printing R&D (auto-print slowness analysis)',
+      'SCWR-10060 — Roll out outbound raw ZPL AWB printing to production',
+      'SCWR-9286 — AWB printing experience parent',
+    ],
+    notes:
+      'No SCWR Completed resolved in the W41 window. Clear progress on Ops Lens + RTV sort wall — years.ts Q4 updated (not a light-week skip). Draft PRs only on SCWR-10876 — omitted from shipped pending merge. Also To Do Frontend: SCWR-11002 (PDA Outbound QC auto-print when printer disconnected). fastfishio watched-repo PR API unauthorized; PR/commit URLs from Jira comments only. Supersedes open PR #6.',
+  },
+  {
     weekId: '2026-W40',
     range: { start: '2026-09-25', end: '2026-10-02' },
     year: 2026,
