@@ -544,14 +544,14 @@ export const years: Record<number, YearData> = {
     focusAreas: ['Outbound', 'Platform', 'JUMP', 'Internal tooling'],
     context: 'FBN / WMS Systems',
     yearOverview: {
-      statement: 'Into mid-Q4: Q1–Q3 platform/outbound depth carried forward; Q4 adds Ops dashboard picking visibility, Noon Tray cert cutover, wireless AWB auto-print, FBN Ops Lens (Product Review), and RTV Sort wall pendency filters in testing.',
+      statement: 'Into mid-Q4: Q1–Q3 platform/outbound depth carried forward; Q4 adds Ops dashboard picking visibility (ESD cutoffs + exclude in-picking), Noon Tray cert cutover, wireless AWB auto-print, FBN Ops Lens (Product Review), and RTV Sort wall pendency filters ready for rollout.',
       highlights: [
         'Platform & QC (Q1): Partners-domain fulfillment, inventory visibility, picking performance, outbound QC tooling, PDA brand R&D.',
         'Transfers & AWB (Q2): Close-job approvals, STAS OB picking UI, faster/safer AWB printing, Packman packaging safeguards.',
         'Scanning & services (Q3): Mandatory barcode scans in pick/sort + FMS QC; HRV lid tote FE; FT2/FT3 COS merge; Packman 3D + RN upgrade.',
         'Platform tooling (Q3): App Center through shareable URLs/RELEASE_NOTES write, Pending ACL hide, MDM→Chat, appcenter-alt isolated deploys; Telemetry FE↔BE; Ops duplicate-fetch fix.',
-        'Printing (Q3–Q4): Outbound AWB PDF → raw ZPL rolled out; Noon Tray + QZ cert cutover on FMS; wireless AWB auto-print on prod; kiosk WebUSB R&D.',
-        'Ops Lens & dashboards (Q4): Picking overview / multi-warehouse summaries; FBN Ops Lens core workstreams in Product Review; RTV Sort wall pendency filters in testing.',
+        'Printing (Q3–Q4): Outbound AWB PDF → raw ZPL rolled out; Noon Tray + QZ cert cutover on FMS; wireless AWB auto-print on prod; kiosk WebUSB R&D; native ZPL payload testing on FMS.',
+        'Ops Lens & dashboards (Q4): Picking overview ESD cutoffs + exclude in-picking; multi-warehouse summaries; FBN Ops Lens in Product Review; RTV Sort wall pendency filters ready for rollout.',
       ],
     },
     keyContributions: [
@@ -567,7 +567,7 @@ export const years: Record<number, YearData> = {
       },
       {
         title: 'Ops Dashboard Visibility',
-        description: 'Picking Pendency overview KPI cards, multi-warehouse filters on Summarised reports, and RTV Sort wall pendency current-leg / aging filters so ops can scan cutoff risk without tab-hopping.',
+        description: 'Picking Pendency overview KPI cards with ESD/cutoff clock labels, exclude in-picking from pendency totals, multi-warehouse Summarised reports, and RTV Sort wall pendency current-leg / aging filters.',
         category: 'Insights',
       },
       {
@@ -973,19 +973,22 @@ export const years: Record<number, YearData> = {
         projects: [
           {
             title: 'Ops Dashboard Picking & Summarised Reports',
-            description: 'Picking Pendency Overview KPI cards (eligible / cutoff risk / not-eligible / capacity), multi-warehouse select on Summarised reports, and RTV Sort wall Pendency current-leg / aging / target-shipped filters.',
+            description: 'Picking Pendency Overview KPI cards (eligible / cutoff risk / not-eligible / capacity) with ESD clock labels, exclude in-picking from pendency totals, multi-warehouse Summarised reports, and RTV Sort wall Pendency current-leg / aging / target-shipped filters.',
             features: [
               'Overview tab: Aggregated pendency cards with 30s refresh; card click opens the matching filtered table tab.',
-              'Cutoff risk: Breach age plus due-in buckets for shipping cutoff pressure.',
+              'Cutoff risk: Breach age plus due-in buckets; ESD/cutoff clock times (“Due in X hours” + boundary timestamps) on overview modals (prod).',
+              'Eligible scope: Overview excludes pick_job_started (In picking) from pendency and cutoff totals; FE label “Eligible to pick”.',
               'Multi-warehouse: Summarised reports Status Summary accepts multiple warehouses in one view.',
-              'RTV Sort wall: Current-leg labels (eligible to pick / tote completion pending), aging column + Over 12 hrs filter, Target Shipped At under 24 hrs filter (Testing Frontend; draft PRs).',
+              'RTV Sort wall: Current-leg labels (eligible to pick / tote completion pending), aging column + Over 12 hrs filter, Target Shipped At under 24 hrs filter (Ready for Rollout).',
             ],
-            impact: 'Ops can scan picking health and multi-warehouse status without hopping tabs; RTV sort-wall pendency gets clearer leg/aging pressure signals.',
+            impact: 'Ops can scan picking health and multi-warehouse status without hopping tabs; cutoff pressure reads as clock times instead of opaque buckets; RTV sort-wall pendency gets clearer leg/aging pressure signals.',
             tag: 'Insights',
             images: [],
             attachments: [
               { label: 'Jira (SCWR-10677)', url: 'https://next-square.atlassian.net/browse/SCWR-10677' },
               { label: 'Jira (SCWR-10674)', url: 'https://next-square.atlassian.net/browse/SCWR-10674' },
+              { label: 'Jira (SCWR-11015)', url: 'https://next-square.atlassian.net/browse/SCWR-11015' },
+              { label: 'Jira (SCWR-11038)', url: 'https://next-square.atlassian.net/browse/SCWR-11038' },
               { label: 'Jira (SCWR-10876)', url: 'https://next-square.atlassian.net/browse/SCWR-10876' },
             ],
           },
@@ -1014,10 +1017,11 @@ export const years: Record<number, YearData> = {
           },
           {
             title: 'Seller RTV Logistics Serviceability',
-            description: 'LMS serviceability check on seller-lab Delivery RTV creation so out-of-zone addresses are blocked at select/create. Implementation plan + product decisions locked (always-on, fail-open, apply to automated RTV).',
+            description: 'LMS serviceability check on seller-lab Delivery RTV creation so out-of-zone addresses are blocked at select/create. Product decisions locked (always-on, fail-open, apply to automated RTV); implementation in Testing Frontend.',
             features: [
               'Plan: partners-app + sc-wms-api via existing LMS POST /public/client/rtv/serviceability.',
               'Product: Always on; fail-open on LMS errors; enforce on drafts; skip address-book page; keep list order.',
+              'Status: Testing Frontend after mock-data validation.',
             ],
             impact: 'Sellers stop creating Delivery RTVs to out-of-zone addresses once the check ships; rollout posture agreed with product.',
             tag: 'Seller',
@@ -1046,20 +1050,24 @@ export const years: Record<number, YearData> = {
           },
           {
             title: 'Wireless AWB Auto-Print & Kiosk WebUSB R&D',
-            description: 'Auto-print AWB after can/verify on wireless printers (prod v3.96) with LMS race retries; kiosk R&D chose WebUSB direct ZPL over a local print-helper process; continued ground analysis of auto-print slowness.',
+            description: 'Auto-print AWB after can/verify on wireless printers (prod v3.96) with LMS race retries; kiosk R&D chose WebUSB direct ZPL; wireless auto-print slowness R&D closed; FMS native ZPL payload side-by-side testing and disconnected-printer auto-print UX ready for rollout.',
             features: [
               'Auto-print: Print without a button tap once AWB is canned and verified; ZPL fetch retries before giving up.',
               'Prod: Wireless auto-print on fbn-mobile-app v3.96.',
               'Kiosk R&D: Compared middleman helper vs WebUSB; WebUSB to Zebra ZD220 chosen for Android kiosks that cannot run Noon Tray.',
-              'Follow-on R&D: On-ground analysis of wireless auto-print slowness (SCWR-10882).',
+              'R&D closed: On-ground analysis of wireless auto-print slowness (SCWR-10882 Completed).',
+              'Native ZPL test: FMS “Print previous AWB (native ZPL)” beside existing ZPL path for device performance comparison (Testing Frontend).',
+              'Disconnected printer: When auto-print is on without a printer, skip label fetch, keep AWB for Print previous AWB, and prompt on Home (Ready for Rollout).',
             ],
-            impact: 'Fewer manual print taps on wireless stations; clear path for kiosk printing where QZ/Noon Tray cannot run; latency follow-ups tracked.',
+            impact: 'Fewer manual print taps on wireless stations; clear path for kiosk printing where QZ/Noon Tray cannot run; native LMS ZPL path under test; safer auto-print when the printer is missing.',
             tag: 'Efficiency',
             images: [],
             attachments: [
               { label: 'Jira (SCWR-10259)', url: 'https://next-square.atlassian.net/browse/SCWR-10259' },
               { label: 'Jira (SCWR-10696)', url: 'https://next-square.atlassian.net/browse/SCWR-10696' },
               { label: 'Jira (SCWR-10882)', url: 'https://next-square.atlassian.net/browse/SCWR-10882' },
+              { label: 'Jira (SCWR-11085)', url: 'https://next-square.atlassian.net/browse/SCWR-11085' },
+              { label: 'Jira (SCWR-11002)', url: 'https://next-square.atlassian.net/browse/SCWR-11002' },
               { label: 'Parent (SCWR-9286)', url: 'https://next-square.atlassian.net/browse/SCWR-9286' },
             ],
           },
@@ -1069,7 +1077,7 @@ export const years: Record<number, YearData> = {
     achievements: [
       {
         title: '2026 YTD Work Summary (through mid-Oct)',
-        description: 'Platform migration, transfer/AWB reliability, scan enforcement (incl. FMS QC), App Center (Pending ACL + RELEASE_NOTES write + alt deploy), Packman packaging, raw ZPL warehouse rollout, HRV lid tote FE, Noon Tray ownership + QZ cert cutover on FMS, STAS urgent-picking contract, FMS repackaging tab + BE integration, Ops dashboard picking overview / multi-warehouse summaries, wireless AWB auto-print on prod, FBN Ops Lens core workstreams in Product Review, and RTV Sort wall pendency filters in testing.',
+        description: 'Platform migration, transfer/AWB reliability, scan enforcement (incl. FMS QC), App Center (Pending ACL + RELEASE_NOTES write + alt deploy), Packman packaging, raw ZPL warehouse rollout, HRV lid tote FE, Noon Tray ownership + QZ cert cutover on FMS, STAS urgent-picking contract, FMS repackaging tab + BE integration, Ops dashboard picking overview (ESD cutoffs + exclude in-picking) / multi-warehouse summaries, wireless AWB auto-print on prod, FBN Ops Lens core workstreams in Product Review, RTV Sort wall pendency filters ready for rollout, and FMS native ZPL / disconnected-printer auto-print in testing.',
         technologies: ['React', 'TypeScript', 'React Native', 'QZ Tray', 'ZPL', 'Noon Tray', 'WebUSB'],
       },
     ],

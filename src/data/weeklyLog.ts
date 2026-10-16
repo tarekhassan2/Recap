@@ -25,6 +25,49 @@ export interface WeeklyLogEntry {
 
 export const weeklyLog: WeeklyLogEntry[] = [
   {
+    weekId: '2026-W42',
+    range: { start: '2026-10-10', end: '2026-10-16' },
+    year: 2026,
+    quarter: 'Q4',
+    highlights: [
+      'Ops dashboard: ESD/cutoff clock times on Picking Pendency overview (prod)',
+      'Ops dashboard: exclude in-picking units from pendency overview; Eligible to pick label (FE merged)',
+      'Wireless AWB R&D closed; FMS native ZPL test path + PDA disconnected-printer auto-print ready for rollout',
+      'Carries W41/W40/W39/W38 from unmerged PR #7 below',
+    ],
+    shipped: [
+      {
+        summary:
+          'Ops dashboard: ESD/cutoff times on Picking Pendency overview (Due in X hours + clock boundaries; prod)',
+        jiraKeys: ['SCWR-11038'],
+      },
+      {
+        summary:
+          'Ops dashboard: exclude pick_job_started from Picking Pendency overview; Eligible to pick label',
+        jiraKeys: ['SCWR-11015'],
+        prUrls: [
+          'https://github.com/fastfishio/sc-webtools/pull/311',
+          'https://github.com/fastfishio/sc-fbn-consolidation-api/pull/1393',
+        ],
+      },
+      {
+        summary: 'Wireless AWB printing R&D closed (auto-print slowness analysis)',
+        jiraKeys: ['SCWR-10882'],
+      },
+    ],
+    inProgress: [
+      'SCWR-10656 — FBN Ops Lens (In Progress Frontend; Product Review on SCWR-10981–10984, 10986)',
+      'SCWR-10876 — RTV Sort wall Pendency enhancements (Ready for Rollout)',
+      'SCWR-10595 — LMS serviceability on seller lab RTV (Testing Frontend)',
+      'SCWR-11085 — FMS native ZPL payload performance testing (Testing Frontend; staging APK v4.05)',
+      'SCWR-11002 — PDA Outbound QC auto-print when printer disconnected (Ready for Rollout)',
+      'SCWR-11033 — Transfer PDA visit-progress item counter (Ready for Rollout)',
+      'SCWR-10060 — Outbound graphical ZPL AWB rollout paused pending LMS native ZPL path',
+    ],
+    notes:
+      'SCWR-9286 (AWB printing experience parent) Completed in-window — portfolio closeout while SCWR-10060 remains open/paused; noted only, not shipped. fastfishio watched-repo PR API unauthorized; PR URLs from Jira comments only. Supersedes open PR #7.',
+  },
+  {
     weekId: '2026-W41',
     range: { start: '2026-10-02', end: '2026-10-09' },
     year: 2026,
