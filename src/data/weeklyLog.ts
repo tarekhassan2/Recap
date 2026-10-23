@@ -25,6 +25,212 @@ export interface WeeklyLogEntry {
 
 export const weeklyLog: WeeklyLogEntry[] = [
   {
+    weekId: '2026-W43',
+    range: { start: '2026-10-16', end: '2026-10-23' },
+    year: 2026,
+    quarter: 'Q4',
+    highlights: [
+      'RTV Sort wall Pendency enhancements + RTV Disputes shipment-value removal deployed to prod',
+      'FMS PDA v4.10: disconnected-printer auto-print + Transfer visit-progress counter',
+      'FMS native ZPL payload testing closed (CAI16 side-by-side vs PDF/Zebrafy)',
+      'Carries W42/W41/W40/W39/W38 from unmerged PR #8 below',
+    ],
+    shipped: [
+      {
+        summary:
+          'RTV Sort wall Pendency: current-leg + aging + target-shipped filters (prod)',
+        jiraKeys: ['SCWR-10876'],
+        prUrls: [
+          'https://github.com/fastfishio/sc-webtools/pull/309',
+          'https://github.com/fastfishio/sc-fbn-consolidation-api/pull/1378',
+        ],
+      },
+      {
+        summary: 'RTV Disputes report: remove Shipment Value column (prod)',
+        jiraKeys: ['SCWR-11135'],
+      },
+      {
+        summary:
+          'PDA Outbound QC: skip auto-print label fetch when printer disconnected; Print previous AWB path (v4.10)',
+        jiraKeys: ['SCWR-11002'],
+      },
+      {
+        summary:
+          'Transfer PDA: visit-progress item counter (baseline per barcode/location; v4.10)',
+        jiraKeys: ['SCWR-11033'],
+      },
+      {
+        summary:
+          'FMS native ZPL payload performance testing closed (CAI16; staging APK v4.05)',
+        jiraKeys: ['SCWR-11085'],
+      },
+    ],
+    inProgress: [
+      'SCWR-11035 — NS Single zone RTV packing split (In Progress Frontend)',
+      'SCWR-10656 — FBN Ops Lens (In Progress Frontend; Product Review on core children)',
+      'SCWR-10595 — LMS serviceability on seller lab RTV (Ready for Rollout)',
+      'SCWR-10060 — Outbound graphical ZPL AWB rollout (IN REVIEW FRONTEND)',
+    ],
+    notes:
+      'SCWR-11002/11033/11085 resolved late on 2026-10-16 after the W42 Friday run — credited here, not in W42 shipped. fastfishio watched-repo PR API unauthorized; PR URLs from Jira comments only. Supersedes open PR #8.',
+  },
+  {
+    weekId: '2026-W42',
+    range: { start: '2026-10-10', end: '2026-10-16' },
+    year: 2026,
+    quarter: 'Q4',
+    highlights: [
+      'Ops dashboard: ESD/cutoff clock times on Picking Pendency overview (prod)',
+      'Ops dashboard: exclude in-picking units from pendency overview; Eligible to pick label (FE merged)',
+      'Wireless AWB R&D closed; FMS native ZPL test path + PDA disconnected-printer auto-print ready for rollout',
+      'Carries W41/W40/W39/W38 from unmerged PR #7 below',
+    ],
+    shipped: [
+      {
+        summary:
+          'Ops dashboard: ESD/cutoff times on Picking Pendency overview (Due in X hours + clock boundaries; prod)',
+        jiraKeys: ['SCWR-11038'],
+      },
+      {
+        summary:
+          'Ops dashboard: exclude pick_job_started from Picking Pendency overview; Eligible to pick label',
+        jiraKeys: ['SCWR-11015'],
+        prUrls: [
+          'https://github.com/fastfishio/sc-webtools/pull/311',
+          'https://github.com/fastfishio/sc-fbn-consolidation-api/pull/1393',
+        ],
+      },
+      {
+        summary: 'Wireless AWB printing R&D closed (auto-print slowness analysis)',
+        jiraKeys: ['SCWR-10882'],
+      },
+    ],
+    inProgress: [
+      'SCWR-10656 — FBN Ops Lens (In Progress Frontend; Product Review on SCWR-10981–10984, 10986)',
+      'SCWR-10876 — RTV Sort wall Pendency enhancements (Ready for Rollout)',
+      'SCWR-10595 — LMS serviceability on seller lab RTV (Testing Frontend)',
+      'SCWR-11085 — FMS native ZPL payload performance testing (Testing Frontend; staging APK v4.05)',
+      'SCWR-11002 — PDA Outbound QC auto-print when printer disconnected (Ready for Rollout)',
+      'SCWR-11033 — Transfer PDA visit-progress item counter (Ready for Rollout)',
+      'SCWR-10060 — Outbound graphical ZPL AWB rollout paused pending LMS native ZPL path',
+    ],
+    notes:
+      'SCWR-9286 (AWB printing experience parent) Completed in-window — portfolio closeout while SCWR-10060 remains open/paused; noted only, not shipped. fastfishio watched-repo PR API unauthorized; PR URLs from Jira comments only. Supersedes open PR #7.',
+  },
+  {
+    weekId: '2026-W41',
+    range: { start: '2026-10-02', end: '2026-10-09' },
+    year: 2026,
+    quarter: 'Q4',
+    highlights: [
+      'FBN Ops Lens epic broken into 11 children; five core workstreams in Product Review (platform, live Forward Ops APIs/SSO, isometric UI, KPI audit, QC animation)',
+      'RTV Sort wall Pendency: current-leg + aging + target-shipped filters (draft PRs; Testing Frontend)',
+      'LMS serviceability check on seller RTV: implementation plan + product decisions (always-on, fail-open)',
+      'Carries W40/W39/W38 from unmerged PR #6 below',
+    ],
+    shipped: [],
+    inProgress: [
+      'SCWR-10656 — FBN Ops Lens (Product Review on SCWR-10981–10984, 10986; staffing/assistant still open)',
+      'SCWR-10876 — RTV Sort wall Pendency enhancements (Testing Frontend; draft sc-webtools#309 + consolidation-api#1378)',
+      'SCWR-10595 — LMS serviceability on seller lab RTV creation',
+      'SCWR-10882 — Wireless AWB printing R&D (auto-print slowness analysis)',
+      'SCWR-10060 — Roll out outbound raw ZPL AWB printing to production',
+      'SCWR-9286 — AWB printing experience parent',
+    ],
+    notes:
+      'No SCWR Completed resolved in the W41 window. Clear progress on Ops Lens + RTV sort wall — years.ts Q4 updated (not a light-week skip). Draft PRs only on SCWR-10876 — omitted from shipped pending merge. Also To Do Frontend: SCWR-11002 (PDA Outbound QC auto-print when printer disconnected). fastfishio watched-repo PR API unauthorized; PR/commit URLs from Jira comments only. Supersedes open PR #6.',
+  },
+  {
+    weekId: '2026-W40',
+    range: { start: '2026-09-25', end: '2026-10-02' },
+    year: 2026,
+    quarter: 'Q4',
+    highlights: [
+      'Ops dashboard: Picking Pendency overview KPI cards + multi-warehouse Summarised reports',
+      'Noon Tray / QZ cert migration closed — FMS silent print on Noon cert + NOON_TRAY_KEY (staging)',
+      'Wireless AWB auto-print on prod v3.96; kiosk printing R&D chose WebUSB over local helper',
+      'Backfilled 2026-W39 and 2026-W38 below (W38 PR #5 never merged; W39 automation gap)',
+    ],
+    shipped: [
+      {
+        summary: 'Ops dashboard: aggregated overview status cards on Picking Pendency report',
+        jiraKeys: ['SCWR-10677'],
+        prUrls: [
+          'https://github.com/fastfishio/sc-webtools/pull/307',
+          'https://github.com/fastfishio/sc-fbn-consolidation-api/pull/1355',
+        ],
+      },
+      {
+        summary: 'Ops dashboard: multi-warehouse select on Summarised reports',
+        jiraKeys: ['SCWR-10674'],
+        prUrls: [
+          'https://github.com/fastfishio/sc-webtools/pull/306',
+          'https://github.com/fastfishio/sc-fbn-consolidation-api/pull/1354',
+        ],
+      },
+      {
+        summary: 'Noon Tray / in-house QZ cert migration — FMS re-vendor 2.2.6 + Noon cert + secrets custody',
+        jiraKeys: ['SCWR-10004', 'SCWR-10009', 'SCWR-10010'],
+      },
+      {
+        summary: 'Wireless AWB auto-print without button press (race-retry fix; prod v3.96)',
+        jiraKeys: ['SCWR-10259'],
+      },
+      {
+        summary: 'Kiosk printing R&D — WebUSB direct ZPL chosen over middleman print helper',
+        jiraKeys: ['SCWR-10696'],
+      },
+    ],
+    inProgress: [
+      'SCWR-10060 — Roll out outbound raw ZPL AWB printing to production',
+      'SCWR-9286 — AWB printing experience parent',
+    ],
+    notes:
+      'Also To Do Frontend: SCWR-10656 (forward ops domain visualization). App Center SCWR-9948/SCWR-10505 Completed in W39 without new Merged PR evidence beyond prior weeks — see W39 notes. fastfishio watched-repo PR API unauthorized; PR URLs from Jira comments only. years.ts: new Q4 2026 block.',
+  },
+  {
+    weekId: '2026-W39',
+    range: { start: '2026-09-18', end: '2026-09-25' },
+    year: 2026,
+    quarter: 'Q3',
+    highlights: [
+      'Outbound QC 3D packing-guide tester config (When + Style) on fbn-outbound-alt',
+      'App Center epic / multi-app imembers ticket marked Completed (no new merge evidence)',
+    ],
+    shipped: [
+      {
+        summary: 'Outbound QC Pacman 3D packing-guide tester config (localStorage When + Style)',
+        jiraKeys: ['SCWR-10621'],
+      },
+    ],
+    inProgress: [
+      'SCWR-10060 — Roll out outbound raw ZPL AWB printing to production',
+      'SCWR-10004 — Noon Tray / in-house QZ cert migration (then Completed in W40)',
+      'SCWR-9286 — AWB printing experience parent',
+    ],
+    notes:
+      'Backfill: no Friday run for W39. SCWR-9948 and SCWR-10505 Completed 2026-09-21; SCWR-10505 still only had draft fn-appcenter#22 — omitted from shipped (no Merged PR evidence). years.ts Q3 left unchanged for this slice (current-quarter rule → Q4 only on W40 run).',
+  },
+  {
+    weekId: '2026-W38',
+    range: { start: '2026-09-11', end: '2026-09-18' },
+    year: 2026,
+    quarter: 'Q3',
+    highlights: [
+      'Light week — closed abandoned ACL-HTTP multi-app slices; imembers landing continues on SCWR-10505',
+    ],
+    shipped: [],
+    inProgress: [
+      'SCWR-9948 — App Center epic (#18 View details on succeeded builds; #21 leave prod deploy group all)',
+      'SCWR-10505 — Land FBN + nclog picker with imembers-gated Pending (draft fn-appcenter#22)',
+      'SCWR-10060 — Roll out outbound raw ZPL AWB printing to production',
+      'SCWR-10004 / SCWR-10010 — Noon Tray / in-house QZ cert migration (cert custody)',
+      'SCWR-9286 — AWB printing experience parent',
+    ],
+    notes:
+      'Backfill from unmerged PR #5. Completed SCWR-10330/SCWR-10331 were closeouts of the abandoned ACL-HTTP multi-app path (work moved to SCWR-10505), not feature ships — omitted from shipped. No new Merged PR evidence in-window beyond W37-credited fn-appcenter#20.',
+  },
+  {
     weekId: '2026-W37',
     range: { start: '2026-09-05', end: '2026-09-12' },
     year: 2026,
