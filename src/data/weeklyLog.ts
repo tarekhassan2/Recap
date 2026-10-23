@@ -25,6 +25,56 @@ export interface WeeklyLogEntry {
 
 export const weeklyLog: WeeklyLogEntry[] = [
   {
+    weekId: '2026-W43',
+    range: { start: '2026-10-16', end: '2026-10-23' },
+    year: 2026,
+    quarter: 'Q4',
+    highlights: [
+      'RTV Sort wall Pendency enhancements + RTV Disputes shipment-value removal deployed to prod',
+      'FMS PDA v4.10: disconnected-printer auto-print + Transfer visit-progress counter',
+      'FMS native ZPL payload testing closed (CAI16 side-by-side vs PDF/Zebrafy)',
+      'Carries W42/W41/W40/W39/W38 from unmerged PR #8 below',
+    ],
+    shipped: [
+      {
+        summary:
+          'RTV Sort wall Pendency: current-leg + aging + target-shipped filters (prod)',
+        jiraKeys: ['SCWR-10876'],
+        prUrls: [
+          'https://github.com/fastfishio/sc-webtools/pull/309',
+          'https://github.com/fastfishio/sc-fbn-consolidation-api/pull/1378',
+        ],
+      },
+      {
+        summary: 'RTV Disputes report: remove Shipment Value column (prod)',
+        jiraKeys: ['SCWR-11135'],
+      },
+      {
+        summary:
+          'PDA Outbound QC: skip auto-print label fetch when printer disconnected; Print previous AWB path (v4.10)',
+        jiraKeys: ['SCWR-11002'],
+      },
+      {
+        summary:
+          'Transfer PDA: visit-progress item counter (baseline per barcode/location; v4.10)',
+        jiraKeys: ['SCWR-11033'],
+      },
+      {
+        summary:
+          'FMS native ZPL payload performance testing closed (CAI16; staging APK v4.05)',
+        jiraKeys: ['SCWR-11085'],
+      },
+    ],
+    inProgress: [
+      'SCWR-11035 — NS Single zone RTV packing split (In Progress Frontend)',
+      'SCWR-10656 — FBN Ops Lens (In Progress Frontend; Product Review on core children)',
+      'SCWR-10595 — LMS serviceability on seller lab RTV (Ready for Rollout)',
+      'SCWR-10060 — Outbound graphical ZPL AWB rollout (IN REVIEW FRONTEND)',
+    ],
+    notes:
+      'SCWR-11002/11033/11085 resolved late on 2026-10-16 after the W42 Friday run — credited here, not in W42 shipped. fastfishio watched-repo PR API unauthorized; PR URLs from Jira comments only. Supersedes open PR #8.',
+  },
+  {
     weekId: '2026-W42',
     range: { start: '2026-10-10', end: '2026-10-16' },
     year: 2026,
